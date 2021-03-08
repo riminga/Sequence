@@ -8,17 +8,24 @@ public class Sequence {
     int[] arrNum;
     int[] addArr;
     List <String> arrayList = new ArrayList<>();
+    private SequenceObserver loger;
 
-
+    public Sequence(SequenceObserver loger) {
+        this.loger = loger;
+    }
 
     public int[] removeByIndex (int[] arr){
         System.out.println("Введите индекс");
+        loger.info("Вводим индекс");
         int serchIndex = sc.nextInt();
+        loger.info("Создаем новый массив меньшего размера");
         int[] newArr = new int[arr.length - 1];
+        loger.info("Ищем индекс");
         if(serchIndex < 0 || serchIndex > arr.length) {
             return arr;
         }
         int j = 0;
+        loger.info("уменьшаем массив");
         for(int i = 0; i < arr.length; i++) {
             if(i == serchIndex) {
                 i++;
@@ -47,11 +54,15 @@ public class Sequence {
         nElemes--;
         addArr = new int[nElemes];
 
+
+        loger.info("Поиск удаляемого элемента");
         for(j=0; j<nElemes; j++) // Поиск удаляемого элемента
             if (arr[j] == serchNumber)
                 break;
-            for(int k=j; k<nElemes; k++)  // Сдвиг последующих элементов
+            loger.info("Сдвиг последующих элементов");
+            for(int k=j; k<nElemes; k++)
             arr[k] = arr[k + 1];
+            loger.info("Уменьшаем размер");
             // Уменьшение размера
         for (j = 0; j < nElemes; j++) { // Вывод элементов
             System.out.print(arr[j] + " ");
@@ -76,6 +87,7 @@ public class Sequence {
     }
     public List<String> addToList(ArrayList<String> list){
         System.out.println("Введите число add");
+        loger.info("Добавляем число");
          String element = Integer.toString(sc.nextInt());
          list.add(element);
         System.out.print(list.toString());
@@ -87,6 +99,7 @@ public class Sequence {
         String [] arrayS = parseS(arr);
         ArrayList<String> list = new ArrayList<String>(Arrays.asList(arrayS));
         System.out.println("Ведите индекс");
+        loger.info("Выводим элемент по индексу ");
         int index = sc.nextInt();
         String num = list.get(index);
         System.out.println(num);

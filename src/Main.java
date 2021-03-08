@@ -2,8 +2,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-            SequenceGenerator sequenceGenerator = new SequenceGenerator();
-            Sequence sequence = new Sequence();
+            SequenceObserver loger = SequenceObserver.getInstance();
+            SequenceGenerator sequenceGenerator = new SequenceGenerator(loger);
+            Sequence sequence = new Sequence(loger);
             sequenceGenerator.generator();
             sequence.removeByIndex(sequenceGenerator.getArr());
             sequence.removeByValue(sequenceGenerator.getArr());
